@@ -57,46 +57,46 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		{
 			txtCod = new JTextField();
-			txtCod.setBounds(53, 10, 96, 18);
+			txtCod.setBounds(74, 10, 96, 18);
 			contentPane.add(txtCod);
 			txtCod.setColumns(10);
 		}
 		{
 			lblNewLabel = new JLabel("Codigo");
-			lblNewLabel.setBounds(10, 13, 44, 12);
+			lblNewLabel.setBounds(25, 13, 44, 12);
 			contentPane.add(lblNewLabel);
 		}
 		{
 			txtNom = new JTextField();
 			txtNom.setColumns(10);
-			txtNom.setBounds(53, 49, 96, 18);
+			txtNom.setBounds(74, 49, 96, 18);
 			contentPane.add(txtNom);
 		}
 		{
 			txtPre = new JTextField();
 			txtPre.setColumns(10);
-			txtPre.setBounds(198, 10, 96, 18);
+			txtPre.setBounds(214, 10, 96, 18);
 			contentPane.add(txtPre);
 		}
 		{
 			txtStock = new JTextField();
 			txtStock.setColumns(10);
-			txtStock.setBounds(198, 49, 96, 18);
+			txtStock.setBounds(214, 49, 96, 18);
 			contentPane.add(txtStock);
 		}
 		{
 			lblNombre = new JLabel("Nombre");
-			lblNombre.setBounds(10, 52, 44, 12);
+			lblNombre.setBounds(25, 52, 54, 12);
 			contentPane.add(lblNombre);
 		}
 		{
 			lblPrecio = new JLabel("Precio");
-			lblPrecio.setBounds(159, 13, 44, 12);
+			lblPrecio.setBounds(171, 13, 44, 12);
 			contentPane.add(lblPrecio);
 		}
 		{
 			lblStock = new JLabel("Stock");
-			lblStock.setBounds(159, 52, 44, 12);
+			lblStock.setBounds(171, 52, 44, 12);
 			contentPane.add(lblStock);
 		}
 		{
@@ -116,7 +116,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 			btnAdicion.setBounds(104, 88, 84, 20);
 			contentPane.add(btnAdicion);
 		}
-		txtS.setText("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
+		
 		{
 			btnBuscar = new JButton("<html><center>Buscar<br>por Cod</center></html>");
 			btnBuscar.addActionListener(this);
@@ -137,13 +137,13 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 		}
 		{
 			lblStockMinimo = new JLabel("Stock Minimo");
-			lblStockMinimo.setBounds(304, 10, 68, 12);
+			lblStockMinimo.setBounds(320, 13, 79, 12);
 			contentPane.add(lblStockMinimo);
 		}
 		{
 			txtStockMin = new JTextField();
 			txtStockMin.setColumns(10);
-			txtStockMin.setBounds(378, 10, 96, 18);
+			txtStockMin.setBounds(409, 10, 96, 18);
 			contentPane.add(txtStockMin);
 		}
 		{
@@ -152,8 +152,13 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 			btninformedeStock.setBounds(472, 75, 96, 35);
 			contentPane.add(btninformedeStock);
 		}
+		txtS.setText("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
+		for(int i=0;i<le.Tamaño();i++) {
+			Producto p=le.obteneri(i);
+			txtS.append(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
+		}
 	}
-	Lesta le=new Lesta();
+	Lesta le= new Lesta();
 	private JButton btnBuscar;
 	private JButton btnModificar;
 	private JButton btnEliminar;
@@ -214,13 +219,13 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 	protected void do_btnBuscar_actionPerformed(ActionEvent e) {
 		
 		if(txtCod.getText().trim().isEmpty()==true) {
-			JOptionPane.showMessageDialog(this,"se debe ingresar un codigo para bucar.","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this,"se debe ingresar un codigo para buscar.","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
 		}
 		else {
 			Producto p= le.Buscar(Integer.parseInt(txtCod.getText()));
 			if(p != null) {
 				JOptionPane.showMessageDialog(this,"Producto encontrado \n"
-						+ p.get_cod()+"\n"+p.get_nom()+"\n"+p.get_precio()+"\n"+p.get_stock());
+						+"CODIGO:"+p.get_cod()+"\n"+"NOMBRE:"+p.get_nom()+"\n"+"PRECIO:"+p.get_precio()+"\n"+"STOCK:"+p.get_stock());
 			}
 			else {
 				JOptionPane.showMessageDialog(this,"No existe este codigo registrado");
@@ -230,7 +235,11 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 	}
 	protected void do_btnModificar_actionPerformed(ActionEvent e) {
 		if(txtCod.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this,"Necesitas el Codigo para eliminar","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this,"Necesitas el Codigo para Modificar","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+		}
+		else if(txtNom.getText().trim().isEmpty()||txtPre.getText().trim().isEmpty()||txtStock.getText().trim().isEmpty()||
+				txtStockMin.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this,"Debes ingresar los demas datos","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);	
 		}
 		else {
 			Producto p=le.Buscar(Integer.parseInt(txtCod.getText()));
@@ -238,6 +247,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 				p.set_nom(txtNom.getText());
 				p.set_precio(Double.parseDouble(txtPre.getText()));
 				p.set_stock(Integer.parseInt(txtStock.getText()));
+				p.set_stockMin(Integer.parseInt(txtStockMin.getText()));
 			}
 		}
 		
