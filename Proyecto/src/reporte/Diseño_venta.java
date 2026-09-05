@@ -1,4 +1,4 @@
-package ejercicio1;
+package reporte;
 
 import java.awt.EventQueue;
 
@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 
-public class Diseno_venta extends JFrame {
+public class Diseño_venta extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -32,7 +32,7 @@ public class Diseno_venta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Diseno_venta frame = new Diseno_venta();
+					Diseño_venta frame = new Diseño_venta();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,9 +44,9 @@ public class Diseno_venta extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Diseno_venta() {
+	public Diseño_venta() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 623, 300);
+		setBounds(100, 100, 666, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -86,12 +86,12 @@ public class Diseno_venta extends JFrame {
 		}
 		{
 			btnNewButton = new JButton("Ingresar");
-			btnNewButton.setBounds(521, 44, 83, 20);
+			btnNewButton.setBounds(521, 44, 100, 20);
 			contentPane.add(btnNewButton);
 		}
 		{
 			textArea = new JTextArea();
-			textArea.setBounds(10, 73, 589, 180);
+			textArea.setBounds(10, 73, 644, 180);
 			contentPane.add(textArea);
 		}
 		{
