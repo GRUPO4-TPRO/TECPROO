@@ -1,4 +1,4 @@
-package ejercicio1;
+package inventario;
 
 public class Sistema_producto {
 

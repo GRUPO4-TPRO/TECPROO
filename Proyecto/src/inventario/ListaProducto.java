@@ -1,9 +1,9 @@
-package ejercicio1;
+package inventario;
 import java.util.ArrayList;
 
-public class Lesta {
+public class ListaProducto {
 ArrayList<Producto>esta=new ArrayList<Producto>();
-public Lesta () {
+public ListaProducto () {
 	esta.add(new Producto(1,"peras",8,10,20));
 	
 	esta.add(new Producto(2,"manzanas",10,40,30));

@@ -1,4 +1,4 @@
-package ejercicio1;
+package inventario;
 
 import java.awt.EventQueue;
 
@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class diseño_ejer1 extends JFrame implements ActionListener {
+public class Diseño_inventario extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -36,7 +36,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					diseño_ejer1 frame = new diseño_ejer1();
+					Diseño_inventario frame = new Diseño_inventario();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public diseño_ejer1() {
+	public Diseño_inventario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 588, 300);
 		contentPane = new JPanel();
@@ -62,7 +62,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 			txtCod.setColumns(10);
 		}
 		{
-			lblNewLabel = new JLabel("Codigo");
+			lblNewLabel = new JLabel("Código");
 			lblNewLabel.setBounds(25, 13, 44, 12);
 			contentPane.add(lblNewLabel);
 		}
@@ -158,7 +158,7 @@ public class diseño_ejer1 extends JFrame implements ActionListener {
 			txtS.append(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
 		}
 	}
-	Lesta le= new Lesta();
+	ListaProducto le= new ListaProducto();
 	private JButton btnBuscar;
 	private JButton btnModificar;
 	private JButton btnEliminar;

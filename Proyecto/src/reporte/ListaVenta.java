@@ -1,5 +1,5 @@
 
-package ejercicio1;
+package reporte;
 
 import java.util.ArrayList;
 

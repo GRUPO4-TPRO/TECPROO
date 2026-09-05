@@ -1,4 +1,4 @@
-package ejercicio1;
+package reporte;
 
 public class Venta {
 	private int Cod_producto;
