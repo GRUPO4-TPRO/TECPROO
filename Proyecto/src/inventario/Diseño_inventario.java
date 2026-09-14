@@ -152,7 +152,7 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 			btninformedeStock.setBounds(482, 77, 96, 35);
 			contentPane.add(btninformedeStock);
 		}
-		txtS.setText("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
+		Imprimir("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
 
 		{
 			btnNewButton = new JButton("<html><center>Ir a reportar<br>ventas</center></html>");
@@ -162,7 +162,7 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 
 		for(int i=0;i<le.Tamaño();i++) {
 			Producto p=le.obteneri(i);
-			txtS.append(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
+			Imprimir(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
 		}
 	}
 	ListaProducto le= new ListaProducto();
@@ -196,11 +196,11 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 	}
 	protected void do_btnlista_actionPerformed(ActionEvent e) {
 		//Listar lo hizo Juan Pablo
-		txtS.setText(" ");
-		txtS.setText("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
+		txtS.setText("");
+		Imprimir("CODIGO"+"\t"+"NOMBRE"+"\t"+"PRECIO"+"\t"+"STOCK"+"\t"+"STOCK_MINIMO\n");
 		 for(int i=0;i<le.Tamaño();i++) {
 			 Producto p= le.obteneri(i);
-			 txtS.append(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
+			 Imprimir(p.get_cod()+"\t"+p.get_nom()+"\t"+p.get_precio()+"\t"+p.get_stock()+"\t"+p.get_stockMin()+"\n");
 		 }
 	}
 	protected void do_btnAdicion_actionPerformed(ActionEvent e) {
@@ -289,10 +289,13 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 		for(int i=0;i<le.Tamaño();i++) {
 			Producto p=le.obteneri(i);
 			if (p.get_stock()<=p.get_stockMin()) {
-				txtS.append("Se esta acabando el stock de: "+p.get_nom()+
+				Imprimir("Se esta acabando el stock de: "+p.get_nom()+
 						" queda "+p.get_stock()+" disponibles en el stock\n");
-				txtS.append("------------------------------------------------\n");
+				Imprimir("------------------------------------------------\n");
 			}
 		}
+	}
+	void Imprimir(String txt) {
+		txtS.append(txt + "\n");
 	}
 }
