@@ -212,7 +212,7 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 		else {
 			Producto p=le.Buscar(Integer.parseInt(txtCod.getText()));
 			if(p !=null){
-				JOptionPane.showMessageDialog(this,"Ya existe el codgio");	
+				JOptionPane.showMessageDialog(this,"Ya existe el código");	
 			}
 			else {
 				le.Arreglo(Integer.parseInt(txtCod.getText()),
@@ -265,11 +265,8 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 	}
 	protected void do_btnEliminar_actionPerformed(ActionEvent e) {
 		// Eliminar lo hizo Jeremy
-		if(txtCod.getText().trim().isEmpty()==true) {
-			JOptionPane.showMessageDialog(this,"Necesitas el Codigo para eliminar","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
-		}
-		else {
-			Producto p = le.Buscar(Integer.parseInt(txtCod.getText()));
+		try {
+			Producto p = le.Buscar(Integer.parseInt(txtCod.getText().trim()));
 		    if (p != null) {
 		        le.eliminar(p);
 		        JOptionPane.showMessageDialog(this, "Producto eliminado");
@@ -281,7 +278,11 @@ public class Diseño_inventario extends JFrame implements ActionListener {
 		    else {
 		        JOptionPane.showMessageDialog(this, "No existe este codigo a eliminar");
 		    }
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(this,"Ingrese un código correcto.","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
 		}
+		
+		
 	}
 	protected void do_btninformedeStock_actionPerformed(ActionEvent e) {
 		//lo hizo Felipe Luciano Soriano informe de stock
