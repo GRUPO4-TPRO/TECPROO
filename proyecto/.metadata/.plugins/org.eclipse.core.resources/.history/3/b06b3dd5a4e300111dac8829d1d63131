@@ -1,0 +1,238 @@
+package ejercicio1;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import ejercicio1.ListaVenta;
+import ejercicio1.Lista_Stock;
+
+public class Diseno_venta extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblCliente;
+	private JLabel lblNewLabel_2;
+	private JTextField txtCodProd;
+	private JTextField txtCliente;
+	private JTextField txtDescrip;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel_1;
+	private JTextField txtCantidad;
+
+	/**
+	 * Launch the application.
+	 */
+	
+	/**
+	 * Create the frame.
+	 */
+	public Diseno_venta(Lista_Stock le,ListaVenta lisV) {
+		setTitle("Registro de Ventas\r\n");
+		this.le=le;
+		this.lisV=lisV;
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 655, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		{
+			lblNewLabel = new JLabel("<html><center>Codigo<br>Producto</center></html>");
+			lblNewLabel.setBounds(79, 10, 59, 29);
+			contentPane.add(lblNewLabel);
+		}
+		{
+			lblCliente = new JLabel("Cliente");
+			lblCliente.setBounds(162, 24, 44, 12);
+			contentPane.add(lblCliente);
+		}
+		{
+			lblNewLabel_2 = new JLabel("Descripcion");
+			lblNewLabel_2.setBounds(278, 24, 95, 12);
+			contentPane.add(lblNewLabel_2);
+		}
+		{
+			txtCodProd = new JTextField();
+			txtCodProd.setBounds(79, 46, 73, 18);
+			contentPane.add(txtCodProd);
+			txtCodProd.setColumns(10);
+		}
+		{
+			txtCliente = new JTextField();
+			txtCliente.setColumns(10);
+			txtCliente.setBounds(162, 46, 106, 18);
+			contentPane.add(txtCliente);
+		}
+		{
+			txtDescrip = new JTextField();
+			txtDescrip.setColumns(10);
+			txtDescrip.setBounds(278, 46, 199, 18);
+			contentPane.add(txtDescrip);
+		}
+		{
+			btnNewButton = new JButton("Ingresar");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(556, 45, 83, 20);
+			contentPane.add(btnNewButton);
+		}
+		{
+			lblNewLabel_1 = new JLabel("Cantidad");
+			lblNewLabel_1.setBounds(487, 24, 95, 12);
+			contentPane.add(lblNewLabel_1);
+		}
+		{
+			txtCantidad = new JTextField();
+			txtCantidad.setColumns(10);
+			txtCantidad.setBounds(487, 46, 59, 18);
+			contentPane.add(txtCantidad);
+		}
+		
+		{
+			btnirAEl = new JButton("<html><center>Ir a el <br>Stock</center></html>");
+			btnirAEl.addActionListener(this);
+			btnirAEl.setBounds(547, 218, 83, 35);
+			contentPane.add(btnirAEl);
+		}
+
+		{
+			lblTotal = new JLabel("VENTA TOTAL DEL DIA:");
+			lblTotal.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lblTotal.setBackground(new Color(240, 240, 240));
+			lblTotal.setForeground(new Color(0, 0, 0));
+			lblTotal.setBounds(10, 233, 282, 20);
+			contentPane.add(lblTotal);
+		}
+		{
+			scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 73, 500, 150);
+			contentPane.add(scrollPane);
+			{
+				txtS = new JTable();
+				scrollPane.setViewportView(txtS);
+				
+			}
+			modeloVentas = new DefaultTableModel();
+			modeloVentas.addColumn("ID_VENTA");
+			modeloVentas.addColumn("CODIGO");
+			modeloVentas.addColumn("CLIENTE");
+			modeloVentas.addColumn("DESCRIPCION");
+			modeloVentas.addColumn("CANTIDAD");
+			modeloVentas.addColumn("PREC_UNI");
+			modeloVentas.addColumn("TOTAL");
+			
+
+			txtS.setModel(modeloVentas);
+		}
+		{
+			lblNewLabel_3 = new JLabel("ID_venta");
+			lblNewLabel_3.setBounds(10, 21, 59, 18);
+			contentPane.add(lblNewLabel_3);
+		}
+		{
+			txtIdVent = new JTextField();
+			txtIdVent.setBounds(10, 45, 59, 18);
+			contentPane.add(txtIdVent);
+			txtIdVent.setColumns(10);
+		}
+		
+		ListarVentas();
+	}
+	Lista_Stock le;
+	ListaVenta lisV;
+	private JButton btnirAEl;
+	private JLabel lblTotal;
+	private JScrollPane scrollPane;
+	private JTable txtS;
+	private DefaultTableModel modeloVentas;
+	private JLabel lblNewLabel_3;
+	private JTextField txtIdVent;
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnirAEl) {
+			do_btnirAEl_actionPerformed(e);
+		}
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		if(txtIdVent.getText().trim().isEmpty()||txtCodProd.getText().trim().isEmpty()||txtCliente.getText().trim().isEmpty()||txtDescrip.getText().trim().isEmpty()||
+				txtCantidad.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this,"se necesita registrar todos los datos","ADVERTENCIA",JOptionPane.WARNING_MESSAGE);
+		}
+		else {
+			int cod= Integer.parseInt(txtCodProd.getText());
+			int idVent=Integer.parseInt(txtIdVent.getText());
+			Clase_Producto p=le.Buscar(cod);
+			Clase_Venta v=lisV.buscarVent(idVent);
+			if(p!=null && v==null) {
+				if(Integer.parseInt(txtCantidad.getText())>p.get_stock()) {
+					JOptionPane.showMessageDialog(this,"cantidad insuficiente en el stock \n"
+							+ "stock actual: "+p.get_stock()+" "+p.get_nom());
+				}
+				else {
+					int cant=Integer.parseInt(txtCantidad.getText());
+					p.set_stock(p.get_stock()-cant);
+					
+					double total= lisV.calcularTotalVenta(Integer.parseInt(txtCantidad.getText()),p.get_precio());
+					lisV.Agregar(Integer.parseInt(txtIdVent.getText()),Integer.parseInt(txtCodProd.getText()),txtDescrip.getText(),
+								Integer.parseInt(txtCantidad.getText()),p.get_precio(),total,txtCliente.getText());
+						ListarVentas();
+				}
+				}
+			else {
+					JOptionPane.showMessageDialog(this,"El codigo del producto no existe o el id de la venta esta repetido");
+				}
+			txtIdVent.setText("");
+			txtCodProd.setText("");
+			txtCliente.setText("");
+			txtDescrip.setText("");
+			txtCantidad.setText("");
+		}
+		
+		
+	}
+	protected void do_btnirAEl_actionPerformed(ActionEvent e) {
+		Diseño_Stock Vstock=new Diseño_Stock(le,lisV);
+		Vstock.setVisible(true);
+		this.dispose();
+	}
+	public void ListarVentas() {
+		modeloVentas.setRowCount(0);
+	    double VentasToltalDeldia = 0;
+
+	    for (int i = 0; i < lisV.Tamaño(); i++) {
+	        Clase_Venta v = lisV.obtenerI(i);
+
+	        Object[] fila = {
+	        	v.getId_venta(),
+	            v.getCod_producto(),
+	            v.getCliente(),
+	            v.getDescripcion(),
+	            v.getCantidad(),
+	            v.getPre_unitario(),
+	            v.getPre_total()
+	        };
+
+	        modeloVentas.addRow(fila);
+	        VentasToltalDeldia += v.getPre_total();
+	    }
+
+	    lblTotal.setText("VENTA TOTAL DEL DIA: S/ " + VentasToltalDeldia);
+	}
+}

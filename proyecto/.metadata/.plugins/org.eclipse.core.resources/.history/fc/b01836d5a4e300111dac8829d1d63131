@@ -1,0 +1,129 @@
+package ejercicio1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.ImageIcon;
+
+public class Diseño_Ventana_Principal extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JButton btnNewButton;
+	private JButton btnIrAReportar;
+
+	/**
+	 * Launch the application.
+	 */
+
+	/**
+	 * Create the frame.
+	 */
+	public Diseño_Ventana_Principal(Lista_Stock ls,ListaVenta lv) {
+		this.ls = (ls != null) ? ls : new Lista_Stock();
+	    this.lv = (lv != null) ? lv : new ListaVenta();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 524, 335);
+		{
+			menuBar = new JMenuBar();
+			setJMenuBar(menuBar);
+			{
+				mnNewMenu = new JMenu("File");
+				menuBar.add(mnNewMenu);
+				{
+					mntmNewMenuItem = new JMenuItem("Salir a la ventana principal");
+					mnNewMenu.add(mntmNewMenuItem);
+				}
+			}
+			{
+				mnNewMenu_1 = new JMenu("Programadores");
+				menuBar.add(mnNewMenu_1);
+				{
+					mntmNewMenuItem_1 = new JMenuItem("Acerca de nosotros");
+					mntmNewMenuItem_1.addActionListener(this);
+					mnNewMenu_1.add(mntmNewMenuItem_1);
+				}
+			}
+		}
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		{
+			lblNewLabel = new JLabel("<html><center>Bienvenido a tu sistema de<br>manejo de stock y ventas</center></html>");
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 24));
+			lblNewLabel.setBounds(93, 21, 290, 72);
+			contentPane.add(lblNewLabel);
+		}
+		{
+			btnNewButton = new JButton("Ir al manejo de stock\r\n");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(157, 103, 172, 44);
+			contentPane.add(btnNewButton);
+		}
+		{
+			btnIrAReportar = new JButton("Ir a reportar la ventas");
+			btnIrAReportar.addActionListener(this);
+			btnIrAReportar.setBounds(157, 182, 172, 44);
+			contentPane.add(btnIrAReportar);
+		}
+		{
+			lblNewLabel_1 = new JLabel("");
+			lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\geron\\eclipse-workspace\\ejercicio1\\Imagen\\logo empresa.jpg"));
+			lblNewLabel_1.setBounds(393, 0, 101, 103);
+			contentPane.add(lblNewLabel_1);
+		}
+
+	}
+	
+	Lista_Stock ls;
+	ListaVenta lv;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
+	private JMenu mnNewMenu_1;
+	private JMenuItem mntmNewMenuItem_1;
+	private JLabel lblNewLabel_1;
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == mntmNewMenuItem_1) {
+			do_mntmNewMenuItem_1_actionPerformed(e);
+		}
+		if (e.getSource() == btnIrAReportar) {
+			do_btnIrAReportar_actionPerformed(e);
+		}
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		Diseño_Stock Stock=new Diseño_Stock(ls,lv);
+		Stock.setVisible(true);
+		
+		this.dispose();
+	}
+	protected void do_btnIrAReportar_actionPerformed(ActionEvent e) {
+		Diseno_venta Venta=new Diseno_venta(ls,lv);
+		Venta.setVisible(true);
+		
+		this.dispose();
+	}
+	protected void do_mntmNewMenuItem_1_actionPerformed(ActionEvent e) {
+		Info_Programadores inPro=new Info_Programadores(ls,lv);
+		inPro.setVisible(true);
+		
+		this.dispose();
+		
+	}
+}

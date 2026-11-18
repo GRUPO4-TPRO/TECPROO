@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+/home/narou/chunky_turtle/Documents/UPN/7. 2026-2/tec-prog-orient-obj/proyecto/proyecto/.metadata/.plugins/org.eclipse.jdt.core
+2767247094.index
+1865797976.index
+317312462.index
